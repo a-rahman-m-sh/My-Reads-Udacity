@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 function Book(props) {
-  const [bookShelf, setBookShelf] = useState({ value: props.shelf });
+  const [bookShelf, setBookShelf] = useState(props.shelf);
   const { onMove, book } = props;
 
   function changeHandler(event) {
-    setBookShelf({ value: event.target.value });
+    setBookShelf(event.target.value);
     onMove(book, event.target.value);
   }
   return (
@@ -24,7 +24,6 @@ function Book(props) {
             <option value="move" disabled>
               Move to...
             </option>
-            <option value="dummy"></option>
             <option value="currentlyReading">Currently Reading</option>
             <option value="wantToRead">Want to Read</option>
             <option value="read">Read</option>

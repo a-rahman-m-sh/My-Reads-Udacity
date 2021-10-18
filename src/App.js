@@ -4,9 +4,8 @@ import "./App.css";
 import BookShelf from "./components/BookShelf/BookShelf";
 import Header from "./components/Header/Header";
 import SearchPage from "./components/SearchPage/SearchPage";
-
+import { NavLink, Route } from "react-router-dom";
 function BooksApp() {
-  const [showSearchPage, setShowSearchPage] = useState(false);
   const [myBooks, setMyBooks] = useState([]);
 
   const bookshelves = [
@@ -19,14 +18,6 @@ function BooksApp() {
       setMyBooks(booksFromAPI);
     });
   }, [myBooks]);
-
-  function hideSearchHandler() {
-    setShowSearchPage(false);
-  }
-
-  function showSearchHandler() {
-    setShowSearchPage(true);
-  }
 
   function moveBook(book, shelf) {
     BooksAPI.update(book, shelf).then((books) => {
@@ -54,16 +45,13 @@ function BooksApp() {
 
   return (
     <div className="app">
-      {showSearchPage ? (
-        <SearchPage
-          onHideSearchPage={hideSearchHandler}
-          books={myBooks}
-          onMove={moveBook}
-        />
-      ) : (
+      <Route path="/search">
+        <SearchPage books={myBooks} onMove={moveBook} />
+      </Route>
+
+      <Route path="/" exact>
         <div className="list-books">
           <Header />
-
           <div className="list-books-content">
             <div>
               {bookshelves.map((bookShelf) => {
@@ -80,10 +68,12 @@ function BooksApp() {
             </div>
           </div>
           <div className="open-search">
-            <button onClick={showSearchHandler}>Add a book</button>
+            <NavLink to="/search">
+              <button>Add a book</button>
+            </NavLink>
           </div>
         </div>
-      )}
+      </Route>
     </div>
   );
 }
