@@ -12,11 +12,13 @@ then run the project  by `npm start`
 
 ## My Strategy
 
-1. first of all I turned the project to functional app cause it is  the most modern react apps convenient 
-2. I splitted all the componnents that was in app file in the starting project to have much leaner and cleaner app.
+1. first of all, I turned the project into a functional app cause it is the most modern react apps convenient
+2. I split all the components that were in the app file in the starting project to have a much leaner and cleaner app.
 3. I fetched my books from the API
-4. added Moving beween shelves functionality 
-5. added search functionality 
+4. added Moving between shelves functionality
+5. added search functionality
+
+
 
 
 
